@@ -1,0 +1,13 @@
+---
+setup:
+  delay_before: '2000' # set the delay before the camera triggers (1 unit is 1 millisecond)
+  delay_after: '5000' # set the delay after the camera triggers  (1 unit is 1 millisecond)
+  start_row: '0' # set the row you would like to start lighting LEDs from. A 0 indicates the first row,
+               # because computers count from 0 usually.
+  end_row: '8' # Set the row you would like to end lighting LEDs from.  The max row of installed pins is 8.
+  start_column: '3' # Set the column you would like to start lighting LEDs from. The minimum is 3 because the pins begin
+                  # at column 4, the maximum is 13 because there are a maximum of 10 LEDs currently in each row.
+  end_column: '13' # Set the column you would like to end lighting LEDs from.  The max column of installed pins is 13.
+  max_leds: '72' # Set a cap of the maximum number of LEDs installed.  The Arduino should stop when it reaches this
+               # number of photos, it will light up from the positions specified and stop once it reaches this number
+               # even if this means stopping before the columns and rows that are specified.
