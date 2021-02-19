@@ -18,6 +18,7 @@ log = logging.getLogger("__name__")
 
 def get_serial_port() -> Optional[str]:
     """
+    Returns the Arduino serial port address on either Linux of MacOS, returns None for other unsupported systems
     :return:
     """
     if sys.platform == "linux":
@@ -30,7 +31,8 @@ def get_serial_port() -> Optional[str]:
 
 def convert_string_to_number(string) -> Optional[int]:
     """
-    :param string:
+    Takes a string and tries to convert it into an int as a check for input parameter formatting
+    :param string: string containing the calibration command sequence
     :return:
     """
     try:
@@ -41,8 +43,9 @@ def convert_string_to_number(string) -> Optional[int]:
 
 def light_led(serial_connection: str) -> bool:
     """
-
-    :param serial_connection:
+    Takes a serial device address and attempts to send a string command to the Arduino to light one LED in the dome for
+    60 seconds so a camera can be set up with the correct exposure and aperture etc.
+    :param serial_connection: string containing the serial address of the Arduino connected to the USB port
     :return:
     """
     try:
@@ -60,8 +63,12 @@ def light_led(serial_connection: str) -> bool:
 
 def calibrate_led(serial_connection: str, calibration: str) -> bool:
     """
-    :param serial_connection:
-    :param calibration:
+    Takes a serial device address and calibration string and attempts to send a string command to the Arduino to light
+    one LED in the dome for a specific amount of time (can also be used to set up a camera).  The calibration string
+    needs to be a series of comma delimited integers.
+    :param serial_connection: string containing the serial address of the Arduino connected to the USB port
+    :param calibration: string containing 3 comma delimited integers containing the x, y, coordinates of the LED you
+    wish to light up followed by how many seconds you wish to light it for e.g. 3,0,20.
     :return:
     """
     try:
@@ -81,7 +88,11 @@ def calibrate_led(serial_connection: str, calibration: str) -> bool:
 
 def start_capture(serial_connection: str) -> bool:
     """
-    :param serial_connection:
+    Takes a serial device address and loads a configuration defined in a yaml file, the configuration is then converted
+    into a command sequence which is then sent to the Arduino to instruct it to capture a sequence of images in the
+    dome and what range of LEDS to use.  It is possible to set the wait inbetween photos, and also the start and end
+    range of the LEDS you wish to use.
+    :param serial_connection: string containing the serial address of the Arduino connected to the USB port
     :return:
     """
     setup: Dict = yaml.load(open('setup.yml', 'r'), Loader=yaml.FullLoader)
@@ -112,8 +123,9 @@ def start_capture(serial_connection: str) -> bool:
 
 def main(arguments) -> bool:
     """
-    
-    :param arguments:
+    Takes arguments from argparse and runs either light_led, calibrate_led, or capture based on your choice.
+    :param arguments: Arguments parsed out of argparse, this should only ever contain one of the mutually exclusive
+    group, so it is not possible to run calibration at the same time as capture.
     :return:
     """
     serial_name: str = get_serial_port()
@@ -146,9 +158,9 @@ def main(arguments) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Python terminal application to make operating the RTI dome simpler')
-    arg_group = parser.add_mutually_exclusive_group()
+    arg_group = parser.add_mutually_exclusive_group(required=True)
     arg_group.add_argument('-l', '--light', action='store_true', help='Set up the camera by turning on a light')
-    arg_group.add_argument('-c', '--calibrate', type=str, help='Enter the address of the LED and how long you would'
+    arg_group.add_argument('-c', '--calibrate', type=str, help='Enter the address of the LED and how long you would '
                                                                'like it to be activated for (in seconds), each variable'
                                                                'needs to be delimited by commas starting with '
                                                                'x, y, time e.g. 3,0,20')
@@ -172,7 +184,7 @@ if __name__ == "__main__":
     try:
         success = main(args)
     except BaseException:
-        log.error("Unhandled exception in indexer", exc_info=True)
+        log.error("Unhandled exception in rti_pi", exc_info=True)
         raise
 
     if success:
