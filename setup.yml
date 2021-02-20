@@ -1,7 +1,7 @@
 ---
 setup:
   delay_before: '2000' # set the delay before the camera triggers (1 unit is 1 millisecond)
-  delay_after: '5000' # set the delay after the camera triggers  (1 unit is 1 millisecond)
+  delay_after: '10000' # set the delay after the camera triggers  (1 unit is 1 millisecond)
   start_row: '0' # set the row you would like to start lighting LEDs from. A 0 indicates the first row,
                # because computers count from 0 usually.
   end_row: '8' # Set the row you would like to end lighting LEDs from.  The max row of installed pins is 8.

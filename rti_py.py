@@ -51,7 +51,7 @@ def light_led(serial_connection: str) -> bool:
     try:
         ser = serial.Serial(serial_connection, 9600, timeout=5)
         time.sleep(2)
-        ser.write('L,0')
+        ser.write(b'L,0')
         time.sleep(2)
         log.info('Lighting LED for 60 seconds to allow for camera focusing!')
     except SerialException as error:
@@ -74,7 +74,7 @@ def calibrate_led(serial_connection: str, calibration: str) -> bool:
     try:
         ser = serial.Serial(serial_connection, 9600, timeout=5)
         time.sleep(2)
-        ser.write(f'T, {calibration}')
+        ser.write(f'T, {bytes(calibration,"utf-8")}')
         time.sleep(2)
         calibration_split: List = calibration.split()
         log.info('Turning on an LED at address x: %s, y: %s, for %s seconds!',
@@ -95,7 +95,7 @@ def start_capture(serial_connection: str) -> bool:
     :param serial_connection: string containing the serial address of the Arduino connected to the USB port
     :return:
     """
-    setup: Dict = yaml.load(open('setup.yml', 'r'), Loader=yaml.FullLoader)
+    setup: Dict = yaml.load(open('setup.yml', 'r'), Loader=yaml.FullLoader).get('setup')
     delay_before: str = setup.get('delay_before')
     delay_after: str = setup.get('delay_after')
     start_row: str = setup.get('start_row')
@@ -104,8 +104,8 @@ def start_capture(serial_connection: str) -> bool:
     end_column: str = setup.get('end_column')
     max_leds: str = setup.get('max_leds')
 
-    command_sequence: str = f"C, {delay_before},{delay_after},{start_row},{end_row},{start_column},{end_column}," \
-                            f"{max_leds}"
+    command_sequence: str = f"C, {delay_before},{delay_after},{start_row},{end_row},{start_column},{end_column},{max_leds}"
+    command_sequence: bytes = bytes(command_sequence, 'utf-8')
 
     try:
         ser = serial.Serial(serial_connection, 9600, timeout=5)
