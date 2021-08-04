@@ -18,6 +18,7 @@ log = logging.getLogger("__name__")
 
 def get_serial_port() -> Optional[str]:
     """
+    Gets the USB serial port that the Arduino board is on if the platform is supported i.e. Mac or Linux only.
     :return: string containing the Arduino serial port address on either Linux of MacOS, returns None for other
     unsupported systems.
     """
@@ -33,7 +34,8 @@ def convert_string_to_number(string: str) -> Optional[int]:
     """
     Takes a string and tries to convert it into an int as a check for input parameter formatting.
     :param string: string containing the calibration command sequence.
-    :return: integer if string is convertable to that type, returns None if not
+    :return: integer if string is convertable to that type, returns None if not.
+    :raises: ValueError if string cannot be converted to an integer.
     """
     try:
         return int(string)
@@ -129,7 +131,7 @@ def main(arguments) -> bool:
     Takes arguments from argparse and runs either light_led, calibrate_led, or capture based on your choice.
     :param arguments: Arguments parsed out of argparse, this should only ever contain one of the mutually exclusive
     group, so it is not possible to run calibration at the same time as capture.
-    :return:
+    :return: True if chosen function succeeds; False if chosen function fails.
     """
     serial_name: str = get_serial_port()
 
