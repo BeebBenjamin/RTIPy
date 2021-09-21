@@ -78,7 +78,7 @@ phased out of the most recent models.  If you want to make it work with differen
 you will need to change the IR pulse code accordingly or find another method of triggering the camera.
 
 ## Basic Usage
-# Turning on a light for adjusting camera focus and exposure
+### Turning on a light for adjusting camera focus and exposure
 Open a terminal and change directory to the place where you downloaded the RTIPy repository.  Activate the pipenv 
 environment previously installed during [installation](#Installation) by typing in the following command into the 
 terminal and press enter:
@@ -95,7 +95,7 @@ python rti_py.py -l
 A single LED should light up inside which will allow you to adjust the camera exposure and the timings in the `setup.yml`
 file accordingly.
 
-# Adjusting the angle of individual LEDs
+### Adjusting the angle of individual LEDs
 If you notice that a particular LED needs adjusting (probably during post processing) it is possible to follow the LED
 back to the board, find its column and row address and instruct the board to light it; this should allow you to adjust 
 the angle with the blue tack if it is a particularly loose fit.  To do so type the something like following command into 
@@ -108,7 +108,7 @@ python rti_py.py -c 3,0,20
 A single LED should light up inside which will allow you to adjust its angle shining onto the target object or use it
 to calibrate the camera as per the `-l` command.
 
-# Triggering Capture
+### Triggering Capture
 To trigger the capture sequence, activate the IR release mode on your Nikon camera in the menu and make sure it can "see"
 the IR trigger LED.  Next type the following command into the terminal and press enter:
 
