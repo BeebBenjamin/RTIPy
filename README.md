@@ -29,25 +29,26 @@ project uses for photography timings e.g. delays required for different exposure
 additional helpful comments that can tell you what each setting does.
 
 ## Bill Of Materials
-1 * Pre-wired 5mm Infra-red 5v LED
-1 * LoLshield
-Several strips of 2.54 mm un-shrouded pin headers cut into pairs (total of 72 pins in pairs of 2 e.g. 31 pairs)
-1 * Arduino Uno + USB cable
-1 * 3D printed dome
-72 * Dual pin jumper wire with "Dupont" connectors, you can buy them [here](https://shop.pimoroni.com/products/dual-pin-jumper-wire)
-72 * Pre-wired 5mm clear 5v LED with "Dupont" connectors
+* 1 x Pre-wired 5mm Infra-red 5v LED
+* 1 x LoLshield
+* Several strips of 2.54 mm un-shrouded pin headers cut into pairs (total of 72 pins in pairs of 2 e.g. 31 pairs)
+* 1 x Arduino Uno + USB cable
+* 1 x 3D printed dome
+* 72 x Dual pin jumper wire with "Dupont" connectors, you can buy them [here](https://shop.pimoroni.com/products/dual-pin-jumper-wire)
+* 72 x Pre-wired 5mm clear 5v LED with "Dupont" connectors
 
 ## Build Instructions
 1. Build the Lolshield (assemble as per it's instructions).  However, if the board comes with its own LEDs don't 
 solder them to the board, because we are going to attach our own headers. 
 
-2. Cut up the 2.54mm pin headers into pairs and solder these in rows as in the following image:
+2. Cut up the 2.54mm pin headers into pairs and solder these in rows and columns into the area marked in the following image, note that each pair sits
+inside the white circle.  You may need to trim the extra plastic off the sides to get them to fit nicely together, a small file will do the job well:
 
-**insert picture here**
+![white led pins](https://github.com/BeebBenjamin/RTIPy/blob/master/images/lolwleds.jpg)
 
-2. Solder a header pair to analogue pin A0 and to a ground pin for the IR LED as follows:
+2. Solder a header pin to analogue pin A0 and to a ground pin for the IR LED as follows:
 
-**insert picture here**
+![ir led pins](https://github.com/BeebBenjamin/RTIPy/blob/master/images/lolirleds.jpg)
 
 3. Attach the Lolshield to the Arduino Uno by pushing it into place like many of the available Arduino shields.
 
@@ -61,7 +62,7 @@ if the fittings are loose.
 also send instructions to the device.
 
 7. Set up your camera as you usually would for RTI and position it over the hole in the top of the dome, use a
-cloth to cover the dome if you wish.  [See Basic Usage](#Basic Usage) for how to pilot the dome using the computer terminal. 
+cloth to cover the dome if you wish.  [See Basic Usage](#basic-usage) for how to pilot the dome using the computer terminal. 
 
 ## 3D Printed Files
 There is a 3D printable dome in the project files, this can be printed using many types of 3D printer or material. 
@@ -78,9 +79,9 @@ phased out of the most recent models.  If you want to make it work with differen
 you will need to change the IR pulse code accordingly or find another method of triggering the camera.
 
 ## Basic Usage
-# Turning on a light for adjusting camera focus and exposure
+### Turning on a light for adjusting camera focus and exposure
 Open a terminal and change directory to the place where you downloaded the RTIPy repository.  Activate the pipenv 
-environment previously installed during [Installation](#Installation) by typing in the following command into the 
+environment previously installed during [installation](#Installation) by typing in the following command into the 
 terminal and press enter:
 
 ```bash
@@ -95,7 +96,7 @@ python rti_py.py -l
 A single LED should light up inside which will allow you to adjust the camera exposure and the timings in the `setup.yml`
 file accordingly.
 
-# Adjusting the angle of individual LEDs
+### Adjusting the angle of individual LEDs
 If you notice that a particular LED needs adjusting (probably during post processing) it is possible to follow the LED
 back to the board, find its column and row address and instruct the board to light it; this should allow you to adjust 
 the angle with the blue tack if it is a particularly loose fit.  To do so type the something like following command into 
@@ -108,7 +109,7 @@ python rti_py.py -c 3,0,20
 A single LED should light up inside which will allow you to adjust its angle shining onto the target object or use it
 to calibrate the camera as per the `-l` command.
 
-# Triggering Capture
+### Triggering Capture
 To trigger the capture sequence, activate the IR release mode on your Nikon camera in the menu and make sure it can "see"
 the IR trigger LED.  Next type the following command into the terminal and press enter:
 
