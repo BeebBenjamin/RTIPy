@@ -1,4 +1,26 @@
 #!/usr/bin/python3
+"""
+MIT License
+
+Copyright (c) 2021 Richard Benjamin Allen, Palaeopi Limited
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEA
+"""
 
 import argparse
 import logging.config
@@ -18,8 +40,9 @@ log = logging.getLogger("__name__")
 
 def get_serial_port() -> Optional[str]:
     """
-    Returns the Arduino serial port address on either Linux of MacOS, returns None for other unsupported systems
-    :return:
+    Gets the USB serial port that the Arduino board is on if the platform is supported i.e. Mac or Linux only.
+    :return: string containing the Arduino serial port address on either Linux of MacOS, returns None for other
+    unsupported systems.
     """
     if sys.platform == "linux":
         return "/dev/" + os.popen("dmesg | egrep ttyACM | cut -f3 -d: | tail -n1").read().strip()
@@ -29,11 +52,12 @@ def get_serial_port() -> Optional[str]:
     return None
 
 
-def convert_string_to_number(string) -> Optional[int]:
+def convert_string_to_number(string: str) -> Optional[int]:
     """
-    Takes a string and tries to convert it into an int as a check for input parameter formatting
-    :param string: string containing the calibration command sequence
-    :return:
+    Takes a string and tries to convert it into an int as a check for input parameter formatting.
+    :param string: string containing the calibration command sequence.
+    :return: integer if string is convertable to that type, returns None if not.
+    :raises: ValueError if string cannot be converted to an integer.
     """
     try:
         return int(string)
@@ -45,8 +69,9 @@ def light_led(serial_connection: str) -> bool:
     """
     Takes a serial device address and attempts to send a string command to the Arduino to light one LED in the dome for
     60 seconds so a camera can be set up with the correct exposure and aperture etc.
-    :param serial_connection: string containing the serial address of the Arduino connected to the USB port
-    :return:
+    :param serial_connection: string containing the serial address of the Arduino connected to the USB port.
+    :return: True if function successfully writes to the USB port.
+    :raise: SerialException if USB serial connection is lost.
     """
     try:
         ser = serial.Serial(serial_connection, 9600, timeout=5)
@@ -69,7 +94,8 @@ def calibrate_led(serial_connection: str, calibration: str) -> bool:
     :param serial_connection: string containing the serial address of the Arduino connected to the USB port
     :param calibration: string containing 3 comma delimited integers containing the x, y, coordinates of the LED you
     wish to light up followed by how many seconds you wish to light it for e.g. 3,0,20.
-    :return:
+    :return: True if function successfully writes to the USB port.
+    :raise: SerialException if USB serial connection is lost.
     """
     try:
         ser = serial.Serial(serial_connection, 9600, timeout=5)
@@ -88,12 +114,13 @@ def calibrate_led(serial_connection: str, calibration: str) -> bool:
 
 def start_capture(serial_connection: str) -> bool:
     """
-    Takes a serial device address and loads a configuration defined in a yaml file, the configuration is then converted
+    Takes a serial device address and loads a configuration defined in a yaml file.  The configuration is converted
     into a command sequence which is then sent to the Arduino to instruct it to capture a sequence of images in the
-    dome and what range of LEDS to use.  It is possible to set the wait inbetween photos, and also the start and end
-    range of the LEDS you wish to use.
-    :param serial_connection: string containing the serial address of the Arduino connected to the USB port
-    :return:
+    dome and what range of LEDs to use.  It is possible to set the wait in between photos, and also the start and end
+    range of the LEDs you wish to use.
+    :param serial_connection: string containing the serial address of the Arduino connected to the USB port.
+    :return: True if function successfully writes to the USB port.
+    :raise: SerialException if USB serial connection is lost.
     """
     setup: Dict = yaml.load(open('setup.yml', 'r'), Loader=yaml.FullLoader).get('setup')
     delay_before: str = setup.get('delay_before')
@@ -126,7 +153,7 @@ def main(arguments) -> bool:
     Takes arguments from argparse and runs either light_led, calibrate_led, or capture based on your choice.
     :param arguments: Arguments parsed out of argparse, this should only ever contain one of the mutually exclusive
     group, so it is not possible to run calibration at the same time as capture.
-    :return:
+    :return: True if chosen function succeeds; False if chosen function fails.
     """
     serial_name: str = get_serial_port()
 
