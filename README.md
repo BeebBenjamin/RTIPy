@@ -44,11 +44,11 @@ solder them to the board, because we are going to attach our own headers.
 2. Cut up the 2.54mm pin headers into pairs and solder these in rows and columns into the area marked in the following image, note that each pair sits
 inside the white circle.  You may need to trim the extra plastic off the sides to get them to fit nicely together, a small file will do the job well:
 
-**insert picture here**
+![white led pins](https://github.com/BeebBenjamin/RTIPy/blob/master/images/lolwleds.jpg)
 
-2. Solder a header pair to analogue pin A0 and to a ground pin for the IR LED as follows:
+2. Solder a header pin to analogue pin A0 and to a ground pin for the IR LED as follows:
 
-**insert picture here**
+![ir led pins](https://github.com/BeebBenjamin/RTIPy/blob/master/images/lolirleds.jpg)
 
 3. Attach the Lolshield to the Arduino Uno by pushing it into place like many of the available Arduino shields.
 
