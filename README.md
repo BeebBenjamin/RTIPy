@@ -61,7 +61,7 @@ if the fittings are loose.
 also send instructions to the device.
 
 7. Set up your camera as you usually would for RTI and position it over the hole in the top of the dome, use a
-cloth to cover the dome if you wish.  [See Basic Usage](#Basic Usage) for how to pilot the dome using the computer terminal. 
+cloth to cover the dome if you wish.  [See Basic Usage](#basic-usage) for how to pilot the dome using the computer terminal. 
 
 ## 3D Printed Files
 There is a 3D printable dome in the project files, this can be printed using many types of 3D printer or material. 
