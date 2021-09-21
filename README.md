@@ -80,7 +80,7 @@ you will need to change the IR pulse code accordingly or find another method of 
 ## Basic Usage
 # Turning on a light for adjusting camera focus and exposure
 Open a terminal and change directory to the place where you downloaded the RTIPy repository.  Activate the pipenv 
-environment previously installed during [Installation](#Installation) by typing in the following command into the 
+environment previously installed during [installation](#Installation) by typing in the following command into the 
 terminal and press enter:
 
 ```bash
