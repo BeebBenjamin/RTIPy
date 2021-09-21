@@ -41,7 +41,8 @@ additional helpful comments that can tell you what each setting does.
 1. Build the Lolshield (assemble as per it's instructions).  However, if the board comes with its own LEDs don't 
 solder them to the board, because we are going to attach our own headers. 
 
-2. Cut up the 2.54mm pin headers into pairs and solder these in rows as in the following image:
+2. Cut up the 2.54mm pin headers into pairs and solder these in rows and columns into the area marked in the following image, note that each pair sits
+inside the white circle.  You may need to trim the extra plastic off the sides to get them to fit nicely together, a small file will do the job well:
 
 **insert picture here**
 
