@@ -29,13 +29,13 @@ project uses for photography timings e.g. delays required for different exposure
 additional helpful comments that can tell you what each setting does.
 
 ## Bill Of Materials
-1 * Pre-wired 5mm Infra-red 5v LED
-1 * LoLshield
-Several strips of 2.54 mm un-shrouded pin headers cut into pairs (total of 72 pins in pairs of 2 e.g. 31 pairs)
-1 * Arduino Uno + USB cable
-1 * 3D printed dome
-72 * Dual pin jumper wire with "Dupont" connectors, you can buy them [here](https://shop.pimoroni.com/products/dual-pin-jumper-wire)
-72 * Pre-wired 5mm clear 5v LED with "Dupont" connectors
+* 1 x Pre-wired 5mm Infra-red 5v LED
+* 1 x LoLshield
+* Several strips of 2.54 mm un-shrouded pin headers cut into pairs (total of 72 pins in pairs of 2 e.g. 31 pairs)
+* 1 x Arduino Uno + USB cable
+* 1 x 3D printed dome
+* 72 x Dual pin jumper wire with "Dupont" connectors, you can buy them [here](https://shop.pimoroni.com/products/dual-pin-jumper-wire)
+* 72 x Pre-wired 5mm clear 5v LED with "Dupont" connectors
 
 ## Build Instructions
 1. Build the Lolshield (assemble as per it's instructions).  However, if the board comes with its own LEDs don't 
