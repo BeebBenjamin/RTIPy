@@ -4,6 +4,12 @@ RTIPy is a Python and Arduino project designed to power a low complexity, afford
 Transformation Imaging (RTI) dome for use in fieldwork.  The RTI dome was commissioned by Dr Abigail Desmond and 
 designed and built by Mr Richard Benjamin Allen at Palaeopi Ltd and funded by the Ashmolean Museum, Oxford.
 
+You can see the dome set up as it is intended below in two reference pictures.
+
+![RTI dome in use 1](https://github.com/BeebBenjamin/RTIPy/blob/master/images/rti_dome_in_use_1.jpg)
+
+![RTI dome in use 2](https://github.com/BeebBenjamin/RTIPy/blob/master/images/rti_dome_in_use_2.jpg)
+
 ## Installation
 
 The project depends on an external Arduino library to drive the Lolshield. Download and install the LoLshield library 
