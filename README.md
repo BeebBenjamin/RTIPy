@@ -69,7 +69,7 @@ There is a 3D printable dome in the project files, this can be printed using man
 For best results the model should be re-sized/calibrated so that the LED holes are not too loose upon printing.
 
 ## RTI Spheres
-We found that 5mm steel balls extracted from roller bearings make excellent RTI Spheres for macro photography.  These
+We found that 5mm steel balls extracted from roller bearings make excellent RTI spheres for macro photography.  These
 can be superglued to [Lego studs with holes](https://www.brickowl.com/catalog/lego-white-plate-1-x-1-round-with-open-stud-28626-85861)
 and their height can easily be adjusted by adding Lego plates to the bottom of the stud.
 
