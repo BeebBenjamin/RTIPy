@@ -48,6 +48,8 @@ def get_serial_port() -> Optional[str]:
         return "/dev/" + os.popen("dmesg | egrep ttyACM | cut -f3 -d: | tail -n1").read().strip()
     elif sys.platform == "darwin":
         return "/dev/cu.usbmodem1411"
+    elif sys.platform == "win32":
+        return "COM3"
 
     return None
 
