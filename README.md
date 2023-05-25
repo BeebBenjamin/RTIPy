@@ -17,7 +17,7 @@ into your Arduino IDE, the project can be found here: https://github.com/jprodge
 
 Use the Arduino IDE to upload the code from the `arduino/rti_py` directory to the Ardunio Uno in the usual way.
 
-To install the Python script needed to communicate with the Arduino board first install `Python 3.6` and `pipenv` as
+To install the Python script needed to communicate with the Arduino board first install `Python 3.8` and `pipenv` as
 per your computer's OS.
 
 **N.B.** Only Linux or MacOS are currently supported by this project.
